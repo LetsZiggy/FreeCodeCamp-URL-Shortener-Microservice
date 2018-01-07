@@ -104,7 +104,7 @@ function determineQuery(query) {
       return({ message: 'new', data: { original: `${content}`, url: newID }});
     }
 
-    return({ message: 'error', data: { message: 'Unusable URL', url: `${content}` }});
+    return({ message: 'error', data: { error: 'Unusable URL', url: `${content}` }});
   }
   else {
     let index = takenIDs.indexOf(query);
@@ -113,7 +113,7 @@ function determineQuery(query) {
       return({ message: 'found', data: { url: addedURLs[index] }});
     }
     else {
-      return({ message: 'error', data: { message: 'Wrong code', code: query }});
+      return({ message: 'error', data: { error: 'Wrong code', code: query }});
     }
   }
 }
