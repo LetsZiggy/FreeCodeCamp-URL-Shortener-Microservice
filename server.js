@@ -104,7 +104,7 @@ function determineQuery(query) {
       return({ message: 'new', data: { original: `${content}`, url: newID }});
     }
 
-    return({ message: 'error', data: { message: 'an unusable URL', url: `${content}` }});
+    return({ message: 'error', data: { message: 'Unusable URL', url: `${content}` }});
   }
   else {
     let index = takenIDs.indexOf(query);
@@ -113,31 +113,9 @@ function determineQuery(query) {
       return({ message: 'found', data: { url: addedURLs[index] }});
     }
     else {
-      return({ message: 'error', data: { message: 'a wrong code', url: query }});
+      return({ message: 'error', data: { message: 'Wrong code', code: query }});
     }
   }
-}
-
-function createErrorMessage(data) {
-  return(`<!DOCTYPE html>
-          <html>
-            <head>
-              <title>FreeCodeCamp - API Projects - URL Shortener Microservice</title>
-              <meta name="description" content="FreeCodeCamp - API Projects - URL Shortener Microservice">
-              <meta name="viewport" content="width=device-width, initial-scale=1">
-              <meta http-equiv="X-UA-Compatible" content="IE=edge">
-              <meta charset="utf-8">
-              <link rel="stylesheet" type="text/css" href="style.css">
-              <link id="favicon" rel="icon" type="image/x-icon" href="favicon.ico">
-            </head>
-            <body>
-              <h1>API Basejump: URL Shortener Microservice</h1>
-              <h3>You have given ${data.message}:</h3>
-              <span>${data.url}</span>
-              <br>
-              <a href="https://letsziggy-freecodecamp-url-shortener-microservice.glitch.me">Back</a>
-            </body>
-          </html>`);
 }
 
 function createRedirectMessage(data) {
@@ -166,8 +144,8 @@ let server = http.createServer((req, res) => {
   else {
     let query = determineQuery(req.url);
     if(query.message === 'error') {
-      res.writeHead(200, { 'Content-Type': 'text/html' });
-      res.end(createErrorMessage(query.data));
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.end(JSON.stringify(query.data));
     }
     else if(query.message === 'new' || query.message === 'added') {
       res.writeHead(200, { 'Content-Type': 'text/plain' });
