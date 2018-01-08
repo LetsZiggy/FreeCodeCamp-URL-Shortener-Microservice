@@ -70,9 +70,8 @@ function createNewId() {
 }
 
 function determineQuery(query) {
-  let ifNew = query.slice(0, 3);
 
-  if(ifNew === 'new') {
+  if(query.slice(0, 3) === 'new') {
     let regex = new RegExp(/^https?:\/\/\w{3,}\.\w+\.\w{2,}$/);
     let content = query.slice(4);
     let index = addedURLs.indexOf(content);
