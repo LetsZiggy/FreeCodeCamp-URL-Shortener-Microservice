@@ -1,3 +1,8 @@
+/**
+***  RESOURCES:
+***    Redirect from HTML HEAD meta ---> https://css-tricks.com/snippets/html/meta-refresh/
+**/
+
 const http = require('http');
 const fs = require('fs');
 const mongo = require('mongodb').MongoClient;
