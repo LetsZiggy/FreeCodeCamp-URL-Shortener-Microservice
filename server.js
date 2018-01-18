@@ -7,7 +7,7 @@ const http = require('http');
 const fs = require('fs');
 const mongo = require('mongodb').MongoClient;
 
-let dbURL = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@ds245687.mlab.com:45687/freecodecamp`;
+let dbURL = `mongodb://${process.env.DBUSER}:${process.env.DBPASSWORD}@${process.env.DBURL}/freecodecamp`;
 let html = null;
 let css = null;
 let takenIDs = [];
