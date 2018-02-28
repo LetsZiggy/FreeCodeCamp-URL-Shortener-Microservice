@@ -30,7 +30,7 @@ fs.readFile('./www/style.css', (err, data) => {
 mongo.connect(dbURL, (err, client) => {
   if(err) { console.log(err); throw err; }
   else {
-    const db = client.db('freecodecamp');
+    const db = client.db(process.env.DBNAME);
 
     db.collection('url-shortener-microservice')
       .find({ name: 'list' })
